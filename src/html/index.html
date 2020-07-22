@@ -1,22 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Google Apps Script</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</head>
+  </head>
 
-<body>
-    <div class="container">
-        <div class="section">
-            <h4>Google Apps Script</h4>
-            <p> Create Google add-ons and web applications with Google Apps Script and modern JavaScript with the
-                starter kit.
-            </p>
+  <body>
+    <div id="myContainer" class="container">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Full Stack Academy</span>
+              <p id="banner">Please select an option</p>
+            </div>
+          </div>
         </div>
+      </div>
+      <div id="select" class="row">
+        <label id="label">Select one</label>
+        <select id="role" class="browser-default">
+          <option value="" disabled selected>I am a...</option>
+          <option value="1">Student</option>
+          <option value="2">Instructor</option>
+        </select>
+        <button id="btn">Submit</button>
+      </div>
     </div>
-</body>
 
+    <script>
+      const button = document.getElementById('btn').addEventListener('click', doStuff);
+
+      function doStuff() {
+        // This function runs a user clicks btn as role 'Student' or 'Instructor'
+        let mySelect = document.getElementById('role').value;
+
+        document.getElementById('role').style.display = 'none';
+        document.getElementById('btn').style.display = 'none';
+
+        const outerContainer = document.getElementById('select');
+        const label = document.getElementById('banner');
+        const topLabel = document.getElementById('label');
+
+        topLabel.style.display = 'none';
+
+        // User selects "Student"
+        if (mySelect === '1') {
+          label.innerText = 'Please enter your feedback';
+
+          const nameDiv = document.createElement('DIV');
+          const workshopDiv = document.createElement('DIV');
+          const instructorDiv = document.createElement('DIV');
+          const cohortDiv = document.createElement('DIV');
+          const rateLectureDiv = document.createElement('DIV');
+          const rateMaterialDiv = document.createElement('DIV');
+          const rateReviewDiv = document.createElement('DIV');
+          const improvementDiv = document.createElement('DIV');
+
+          const nameInput = document.createElement('INPUT');
+          const nameLabel = document.createElement('LABEL');
+          const workshopInput = document.createElement('INPUT');
+          const workshopLabel = document.createElement('LABEL');
+          const instructorInput = document.createElement('INPUT');
+          const instructorLabel = document.createElement('LABEL');
+          const cohortInput = document.createElement('INPUT');
+          const cohortLabel = document.createElement('LABEL');
+          const rateLectureLabel = document.createElement('LABEL');
+          const rateLectureSelect = document.createElement('SELECT');
+          const rateMaterialLabel = document.createElement('LABEL');
+          const rateMaterialSelect = document.createElement('SELECT');
+          const rateReviewLabel = document.createElement('LABEL');
+          const rateReviewSelect = document.createElement('SELECT');
+          const improvementText = document.createElement('TEXTAREA');
+          const improvementLabel = document.createElement('LABEL');
+
+          const list = [rateLectureSelect, rateMaterialSelect, rateReviewSelect];
+
+          list.forEach((select) => {
+            for (let i = 0; i <= 5; i++) {
+              let opt = document.createElement('option');
+              opt.value = i;
+              opt.innerHTML = i;
+              select.appendChild(opt);
+            }
+          });
+
+          nameDiv.classList.add('input-field', 'col', 's6');
+          workshopDiv.classList.add('input-field', 'col', 's6');
+          instructorDiv.classList.add('input-field', 'col', 's6');
+          cohortDiv.classList.add('input-field', 'col', 's6');
+          rateLectureSelect.classList.add('browser-default');
+          rateMaterialSelect.classList.add('browser-default');
+          rateReviewSelect.classList.add('browser-default');
+
+          nameInput.setAttribute('type', 'text');
+          workshopInput.setAttribute('type', 'text');
+          instructorInput.setAttribute('type', 'text');
+          cohortInput.setAttribute('type', 'text');
+
+          nameLabel.innerText = 'Your Name';
+          workshopLabel.innerText = 'Workshop Name';
+          instructorLabel.innerText = 'Instructor Name';
+          cohortLabel.innerText = 'Cohort';
+          rateLectureLabel.innerText = 'How was the lecture for this workshop (if applicable)?';
+          rateMaterialLabel.innerText = 'How was the workshop material for this workshop?';
+          rateReviewLabel.innerText = 'How was the review for this workshop (if applicable)';
+          improvementLabel.innerText = 'How would you improve the workshop?';
+
+          outerContainer.appendChild(nameDiv);
+          nameDiv.appendChild(nameInput);
+          nameDiv.appendChild(nameLabel);
+
+          outerContainer.appendChild(workshopDiv);
+          workshopDiv.appendChild(workshopInput);
+          workshopDiv.appendChild(workshopLabel);
+
+          outerContainer.appendChild(instructorDiv);
+          instructorDiv.appendChild(instructorInput);
+          instructorDiv.appendChild(instructorLabel);
+
+          outerContainer.appendChild(cohortDiv);
+          cohortDiv.appendChild(cohortInput);
+          cohortDiv.appendChild(cohortLabel);
+
+          outerContainer.appendChild(rateLectureDiv);
+          rateLectureDiv.appendChild(rateLectureLabel);
+          rateLectureDiv.appendChild(rateLectureSelect);
+
+          outerContainer.appendChild(rateMaterialDiv);
+          rateMaterialDiv.appendChild(rateMaterialLabel);
+          rateMaterialDiv.appendChild(rateMaterialSelect);
+
+          outerContainer.appendChild(rateReviewDiv);
+          rateReviewDiv.appendChild(rateReviewLabel);
+          rateReviewDiv.appendChild(rateReviewSelect);
+
+          outerContainer.appendChild(improvementDiv);
+          improvementDiv.appendChild(improvementLabel);
+          improvementDiv.appendChild(improvementText);
+
+          // User selects "Instructor"
+        } else {
+          label.innerText = 'Please enter your response';
+        }
+      }
+    </script>
+  </body>
 </html>
