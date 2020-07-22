@@ -37,7 +37,7 @@
       const button = document.getElementById('btn').addEventListener('click', generateForm);
 
       const submitForm = () => {
-        console.log('hi)');
+        console.log('hi');
       };
 
       function generateForm() {
@@ -58,7 +58,7 @@
           // Banner text
           label.innerText = 'Please enter your feedback';
 
-          // Create container divs
+          // Create container DIVs
           const nameDiv = document.createElement('DIV');
           const workshopDiv = document.createElement('DIV');
           const instructorDiv = document.createElement('DIV');
@@ -68,7 +68,7 @@
           const rateReviewDiv = document.createElement('DIV');
           const improvementDiv = document.createElement('DIV');
 
-          // Create text inputs / selects and labels
+          // Create text inputs, selects, and labels
           const nameInput = document.createElement('INPUT');
           const nameLabel = document.createElement('LABEL');
           const workshopInput = document.createElement('INPUT');
@@ -119,7 +119,7 @@
           instructorInput.setAttribute('type', 'text');
           cohortInput.setAttribute('type', 'text');
 
-          // Add ids to input and select elements
+          // Add id to input and select elements
           nameInput.setAttribute('id', 'nameInput');
           workshopInput.setAttribute('id', 'workshopInput');
           instructorInput.setAttribute('id', 'instructorInput');
