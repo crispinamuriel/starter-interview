@@ -34,9 +34,9 @@
     </div>
 
     <script>
-      const button = document.getElementById('btn').addEventListener('click', doStuff);
+      const button = document.getElementById('btn').addEventListener('click', generateForm);
 
-      function doStuff() {
+      function generateForm() {
         // This function runs a user clicks btn as role 'Student' or 'Instructor'
         let mySelect = document.getElementById('role').value;
 
@@ -51,8 +51,10 @@
 
         // User selects "Student"
         if (mySelect === '1') {
+          // Banner text
           label.innerText = 'Please enter your feedback';
 
+          // Create container divs
           const nameDiv = document.createElement('DIV');
           const workshopDiv = document.createElement('DIV');
           const instructorDiv = document.createElement('DIV');
@@ -62,6 +64,7 @@
           const rateReviewDiv = document.createElement('DIV');
           const improvementDiv = document.createElement('DIV');
 
+          //Create text inputs / selects and labels
           const nameInput = document.createElement('INPUT');
           const nameLabel = document.createElement('LABEL');
           const workshopInput = document.createElement('INPUT');
@@ -79,8 +82,10 @@
           const improvementText = document.createElement('TEXTAREA');
           const improvementLabel = document.createElement('LABEL');
 
+          // Select elements that need options
           const list = [rateLectureSelect, rateMaterialSelect, rateReviewSelect];
 
+          // Loop to generate options 0-5
           list.forEach((select) => {
             for (let i = 0; i <= 5; i++) {
               let opt = document.createElement('option');
@@ -90,6 +95,9 @@
             }
           });
 
+          //Add attributes to our DOM structure
+
+          // Add `material-ui` classes to divs
           nameDiv.classList.add('input-field', 'col', 's6');
           workshopDiv.classList.add('input-field', 'col', 's6');
           instructorDiv.classList.add('input-field', 'col', 's6');
@@ -98,11 +106,13 @@
           rateMaterialSelect.classList.add('browser-default');
           rateReviewSelect.classList.add('browser-default');
 
+          // Add text types to inputs
           nameInput.setAttribute('type', 'text');
           workshopInput.setAttribute('type', 'text');
           instructorInput.setAttribute('type', 'text');
           cohortInput.setAttribute('type', 'text');
 
+          // Add inner text to labels
           nameLabel.innerText = 'Your Name';
           workshopLabel.innerText = 'Workshop Name';
           instructorLabel.innerText = 'Instructor Name';
@@ -112,6 +122,7 @@
           rateReviewLabel.innerText = 'How was the review for this workshop (if applicable)';
           improvementLabel.innerText = 'How would you improve the workshop?';
 
+          // Append created and formatted elements to DOM
           outerContainer.appendChild(nameDiv);
           nameDiv.appendChild(nameInput);
           nameDiv.appendChild(nameLabel);
