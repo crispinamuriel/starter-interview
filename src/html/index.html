@@ -36,6 +36,10 @@
     <script>
       const button = document.getElementById('btn').addEventListener('click', generateForm);
 
+      const submitForm = () => {
+        console.log('hi)');
+      };
+
       function generateForm() {
         // This function runs a user clicks btn as role 'Student' or 'Instructor'
         let mySelect = document.getElementById('role').value;
@@ -64,7 +68,7 @@
           const rateReviewDiv = document.createElement('DIV');
           const improvementDiv = document.createElement('DIV');
 
-          //Create text inputs / selects and labels
+          // Create text inputs / selects and labels
           const nameInput = document.createElement('INPUT');
           const nameLabel = document.createElement('LABEL');
           const workshopInput = document.createElement('INPUT');
@@ -82,6 +86,10 @@
           const improvementText = document.createElement('TEXTAREA');
           const improvementLabel = document.createElement('LABEL');
 
+          // Create Submit button
+          const btn = document.createElement('BUTTON');
+          btn.innerHTML = 'Submit';
+          btn.setAttribute('id', 'submitBtn');
           // Select elements that need options
           const list = [rateLectureSelect, rateMaterialSelect, rateReviewSelect];
 
@@ -164,18 +172,75 @@
           improvementDiv.appendChild(improvementLabel);
           improvementDiv.appendChild(improvementText);
 
+          outerContainer.appendChild(btn);
+
           // User selects "Instructor"
         } else {
           label.innerText = 'Please enter your response';
         }
-        const name = document.getElementById('nameInput');
-        const workshop = document.getElementById('workshopInput');
-        const instructor = document.getElementById('instructorInput');
-        const cohort = document.getElementById('cohortInput');
-        const lectureRating = document.getElementById('rateLectureSelect');
-        const materialRating = document.getElementById('rateMaterialSelect');
-        const reviewRating = document.getElementById('rateReviewSelect');
-        const improve = document.getElementById('improvementText');
+
+        document.getElementById('submitBtn').addEventListener('click', submitForm);
+
+        function submitForm() {
+          // Caputre form values
+          const name = document.getElementById('nameInput').value;
+          const workshop = document.getElementById('workshopInput').value;
+          const instructor = document.getElementById('instructorInput').value;
+          const cohort = document.getElementById('cohortInput').value;
+          const lectureRating = document.getElementById('rateLectureSelect').value;
+          const materialRating = document.getElementById('rateMaterialSelect').value;
+          const reviewRating = document.getElementById('rateReviewSelect').value;
+          const improve = document.getElementById('improvementText').value;
+          console.log(
+            name,
+            workshop,
+            instructor,
+            cohort,
+            lectureRating,
+            materialRating,
+            reviewRating,
+            improve
+          );
+
+          google.script.run.submitCode(
+            name,
+            workshop,
+            instructor,
+            cohort,
+            lectureRating,
+            materialRating,
+            reviewRating,
+            improve,
+            new Date()
+          );
+        }
+        function submitCode(
+          name,
+          workshop,
+          instructor,
+          cohort,
+          lectureRating,
+          materialRating,
+          reviewRating,
+          improve
+        ) {
+          // Google Sheets Connection
+          const url =
+            'https://docs.google.com/spreadsheets/d/1JHWN0PvhFJno-hjLj_uye42FUTQr8FeCNdj5TmLxD0Y/edit#gid=0';
+          const googleSheet = SpreadsheetApp.openByUrl(url);
+          const sheet1 = googleSheet.getSheetByName('Sheet1');
+          sheet1.appendRow([
+            name,
+            workshop,
+            instructor,
+            cohort,
+            lectureRating,
+            materialRating,
+            reviewRating,
+            improve,
+            new Date(),
+          ]);
+        }
       }
     </script>
   </body>
