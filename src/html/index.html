@@ -95,8 +95,7 @@
             }
           });
 
-          //Add attributes to our DOM structure
-
+          // Add attributes to generated DOM Elements
           // Add `material-ui` classes to divs
           nameDiv.classList.add('input-field', 'col', 's6');
           workshopDiv.classList.add('input-field', 'col', 's6');
@@ -111,6 +110,16 @@
           workshopInput.setAttribute('type', 'text');
           instructorInput.setAttribute('type', 'text');
           cohortInput.setAttribute('type', 'text');
+
+          // Add ids to input and select elements
+          nameInput.setAttribute('id', 'nameInput');
+          workshopInput.setAttribute('id', 'workshopInput');
+          instructorInput.setAttribute('id', 'instructorInput');
+          cohortInput.setAttribute('id', 'cohortInput');
+          rateLectureSelect.setAttribute('id', 'rateLectureSelect');
+          rateMaterialSelect.setAttribute('id', 'rateMaterialSelect');
+          rateReviewSelect.setAttribute('id', 'rateReviewSelect');
+          improvementText.setAttribute('id', 'improvementText');
 
           // Add inner text to labels
           nameLabel.innerText = 'Your Name';
